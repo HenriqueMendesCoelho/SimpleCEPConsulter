@@ -1,0 +1,20 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with 'go test -c'
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Ignore any version of the Go tools.
+# You might want to include an exception if you're vendoring your Go dependencies
+/bin/
+/pkg/
+
+# Dependency directories
+/vendor/

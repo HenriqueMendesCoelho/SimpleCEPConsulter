@@ -3,52 +3,28 @@ package main
 import (
 	"fmt"
 	"os"
-	"os/exec"
-	"runtime"
 
-	"com.github/henriquemendescoelho/simplecepconsultor/utils"
+	"com.github/henriquemendescoelho/simplecepconsultor/screen"
+	"com.github/henriquemendescoelho/simplecepconsultor/service"
 )
 
 func main() {
-	var cep string
+	var cep string = screen.AskCEP()
 
-	fmt.Println("Enter CEP to search: (only numbers)")
-	fmt.Scanf("%s", &cep)
-	fmt.Scanln()
+	screen.ClearScreen()
 
-	fmt.Println()
-	fmt.Println("=================")
-	fmt.Println()
-
-	ClearScreen()
-
-	result, err := utils.GetCep(cep)
-	if err != nil {
-		utils.ShowError(err)
-		utils.AskToContinue()
+	result, err := service.GetCep(cep)
+	if err == nil {
+		fmt.Println(screen.GenerateMessage(result))
+		fmt.Println()
+	} else {
+		screen.ShowError(err)
 	}
 
-	fmt.Println(utils.GenerateMessage(result))
-
-	fmt.Println()
-
-	if utils.AskToContinue() {
-		ClearScreen()
+	if screen.AskToContinue() {
+		screen.ClearScreen()
 		main()
 	}
 
 	os.Exit(0)
-}
-
-func ClearScreen() {
-	switch runtime.GOOS {
-	case "linux", "darwin":
-		cmd := exec.Command("clear")
-		cmd.Stdout = os.Stdout
-		cmd.Run()
-	case "windows":
-		cmd := exec.Command("cmd", "/c", "cls")
-		cmd.Stdout = os.Stdout
-		cmd.Run()
-	}
 }

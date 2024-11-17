@@ -20,31 +20,25 @@ Make sure you have Go installed on your machine. If not, you can download and in
    cd SimpleCEPConsulter
    ```
 
-3. Navigate to cmd folder directory:
+3. Build the project:
 
    ```bash
-   cd cmd
-   ```
-
-4. Build the project:
-
-   ```bash
-   go build -o SimpleCEPConsulter
+   go build -o simplecepconsultor cmd/main.go
    ```
 
    Note: On Windows, if you encounter issues running the compiled binary, try adding the .exe extension to the output name:
 
    ```bash
-   go build -o SimpleCEPConsulter.exe
+   go build -o simplecepconsultor.exe cmd/main.go
    ```
 
-5. Run the compiled binary:
+4. Run the compiled binary:
 
    ```bash
    ./SimpleCEPConsulter
    ```
 
-6. Follow the on-screen instructions to input the CEP and view the corresponding address information.
+5. Follow the on-screen instructions to input the CEP and view the corresponding address information.
 
 ## Note for Windows Users
 
